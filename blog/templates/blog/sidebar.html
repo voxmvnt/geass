@@ -1,0 +1,47 @@
+<!-- Search Form Start -->
+<div class="mb-5">
+    <select id="search-type" class="form-select float-start" style="width: 100px;">
+        <option value="all">전체</option>
+        <option value="title">제목</option>
+        <option value="tag">태그</option>
+        <option value="author">작성자</option>
+    </select>
+</div>
+
+<div class="mb-5">
+    <div class="bg-secondary" style="padding: 30px;">
+        <div class="input-group">
+            <input type="text" class="form-control border-0 p-3" placeholder="Keyword" id="search-input" style="height: calc(1.5em + 0.75rem + 2px);">
+            <div class="input-group-append">
+                <span class="input-group-text bg-primary border-primary text-white" onclick="searchPost();"><i class="fa fa-search p-1"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search Form End -->
+
+<!-- Category Form Start -->
+<div class="mb-5">
+    <h3 class="mb-4">Categories</h3>
+    <div class="bg-secondary" style="padding: 30px;">
+        <ul class="list-inline m-0">
+            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                <a class="text-dark" href="/blog/"><i class="fa fa-angle-right text-primary mr-2"></i>전체</a>
+                <span class="badge badge-secondary badge-pill">{{ all_post_count }}</span>
+            </li>
+    
+            {% for category in categories %}
+                <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                    <a class="text-dark" href="{{ category.get_absolute_url }}"><i class="fa fa-angle-right text-primary mr-2"></i>{{ category }}</a>
+                    <span class="badge badge-secondary badge-pill">{{ category.post_set.count }}</span>
+                </li>
+            {% endfor %}
+    
+            <li class="mb-1 py-2 px-3 bg-light d-flex justify-content-between align-items-center">
+                <a class="text-dark" href="/blog/category/no_category/"><i class="fa fa-angle-right text-primary mr-2"></i>AI 기타 도구활용</a>
+                <span class="badge badge-secondary badge-pill">{{ no_category_post_count }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Category Form End -->

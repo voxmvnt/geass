@@ -1,0 +1,77 @@
+/* ai_program_intro */
+
+.custom-bold-text {
+    font-weight: bold;
+    font-size: 50px;
+}
+.custom-font-size {
+    font-size: 16px;
+}
+.case-item img {
+    transition: .5s;
+}
+  
+.case-item:hover img {
+    transform: scale(1.2);
+}
+  
+.case-overlay {
+    position: absolute;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: linear-gradient(rgba(20, 24, 62, 0), var(--dark));
+    z-index: 1;
+}
+
+.case-overlay small {
+    display: inline-block;
+    padding: 3px 15px;
+    color: #FFFFFF;
+    background: rgba(212, 212, 212, 0.431);
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.case-overlay span.btn:hover {
+    color: var(--primary);
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.img_pg{
+    height: 400px;
+    width: 100%;
+
+}
+
+.case-item{
+    width: 100%;
+}
+
+.col-lg-4 {
+    width: 300px;
+    margin: 10px;
+}
+
+.row g-4{
+    
+    justify-content: space-between;
+
+}
+
+
+
+/********** Template CSS **********/
+:root {
+    /* --primary: #1363C6;
+    --secondary: #15ACE1;
+    --light: #F4F7FE; */
+    --dark: #14183E;
+}

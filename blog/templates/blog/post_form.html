@@ -1,0 +1,35 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block head_title %}
+    신규 Post 작성
+{% endblock  %}
+{% block css_area %}
+    {% comment %} <link rel="stylesheet" href="{% static 'blog/css/post_list.css' %}" media="screen">   {% endcomment %}
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <h1>New Post</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data"> {% csrf_token %} 
+        {{ form | crispy }}
+        <div id="div_id_tags_str">
+            <label for="id_tags_str">Tags:</label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textinput textInput form-control" placeholder="#을 사용하여 태그값을 구분하세요.">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary float-end">Submit</button>
+    </form>
+    {{ form.media }}
+    <br><br>
+</div>
+<!-- Blog End -->
+
+{% endblock  %}
+
+{% block js_area %}
+    {% comment %} <script src="{% static 'blog/js/post_list.js' %}"></script> {% endcomment %}
+{% endblock  %}

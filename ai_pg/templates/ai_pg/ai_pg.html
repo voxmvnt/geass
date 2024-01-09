@@ -1,0 +1,139 @@
+<!-- ai_program_intro -->
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'ai_pg/css/ai_pg.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+    <div class="container-fluid pt-1 bg-primary hero-header mb-0">
+        <div class="container pt-5">
+            <div class="row g-5 py-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">AI Odyssey</div>
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">AI PROGRAM</h1>
+                    <p class="text-white mb-4 animated slideInRight">
+                        AI 프로그램의 활용으로 풍부하고 간편한 기능을 체험해보세요.<br>새로운 세계가 열리며 더욱 효과적인 경험을 만나보실 수 있습니다.
+                    </p>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="{% static 'ai_pg/images/1123.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ai_pro_intro start -->
+    <div class="container-fluid bg-light py-5">
+        <div class="container py-4 ">
+            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="btn btn-sm border rounded-pill text-primary px-3 mb-2 custom-font-size">AI 프로그램 소개</div>
+                <h1 class="mb-5 custom-bold-text">AI 프로그램</h1>
+            </div>
+            <div class="row g-4 mt-5 ">
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/tldraw.jpg' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num1"> 
+                            <small>Tldraw</small>
+                            <h6 class="lh-base text-white mb-3">그림을 그리면 디자인부터 코드까지 작성해주는 AI Make Real의 Tldraw.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Gamma.jpg' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num2">
+                            <small>Gamma</small>
+                            <h6 class="lh-base text-white mb-3">AI로 PPT, 문서를 생성 해주는 혁신적인 도구 Gamma Tech의 Gamma.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Canva.png' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num3">
+                            <small>Canva</small>
+                            <h6 class="lh-base text-white mb-3">디자인에 대한 전문적인 기술이 없어도 누구나 손쉽게 만드는 디자인 솔루션 Canva.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Evoto.jpg' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num4">
+                            <small>Evoto</small>
+                            <h6 class="lh-base text-white mb-3">AI 인공지능을 이용한 인물사진 전문 후보정 프로그램 Evoto.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Notion.png' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num5">
+                            <small>Nothion</small>
+                            <h6 class="lh-base text-white mb-3">일상 업무의 효율을 혁신적으로 높여주는 기능 모음 Notion.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Luminar.jpg' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num6">
+                            <small>Luminar</small>
+                            <h6 class="lh-base text-white mb-3">독점적인 도구와 무한한 가능성 모든 기능을 담은 하나의 AI 편집기 Luminar.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/Amper.jpg' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num7">
+                            <small>Amper</small>
+                            <h6 class="lh-base text-white mb-3">인공지능 기반의 음악 생성 플랫폼 Amper.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="case-item position-relative overflow-hidden rounded mb-2">
+                        <img class="img-fluid img_pg" src="{% static 'ai_pg/images/A.jfif' %}" alt="">
+                        <a class="case-overlay text-decoration-none" href="/ai_pg/ai_tool_guide/#slide_num8">
+                            <small>A.에이닷</small>
+                            <h6 class="lh-base text-white mb-3">내 일상을 편리하게 만들어줄 나만의 AI 개인비서나만의 AI 개인비서 A.에이닷.
+                            </h6>
+                            <span class="btn btn-square btn-primary"><i class="fa fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ai_pro_intro end -->
+
+    <!-- ai_pr start -->
+
+    <!-- ai_pr end -->
+
+{% endblock  %}
+
+{% block js_area %}
+            
+{% endblock  %}
+    

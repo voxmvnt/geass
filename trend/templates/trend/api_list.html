@@ -1,0 +1,69 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+    {{ title_text }}
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'trend/css/api_list.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Blog Grid Start -->
+        <div class="col-lg-9">
+            <div class="row">
+                {% for article in article_info %}
+                    <div class="col-md-6 mb-3">
+                        <div class="position-relative">
+                            <div class="image-container">
+                                <img class="img-fluid w-100" src="{{ article.thumbnail_url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="bg-secondary mb-3" style="padding: 30px;">
+                            <h4 class="font-weight-bold mb-3">{{ article.title }}</h4>
+                            <p>{{ article.contents | truncatewords:35 }}</p>
+                            <p class="text-muted mt-2">{{ article.show_date }}</p>
+                            {% if article.url %}
+                                <a class="border-bottom border-primary text-uppercase text-decoration-none" href="/trend/content/{{ article.url_prm | urlencode }}">
+                            {% else %}
+                                <a class="border-bottom border-primary text-uppercase text-decoration-none" href="/trend/content/no_content/">
+                            {% endif %}
+                                Read More <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Blog Grid End -->
+
+        <!-- Sidebar Start -->
+        <div class="col-lg-3 mt-5 mt-lg-0">
+            <!-- Search Form Start -->
+            <div class="mb-5">
+                <div class="bg-secondary" style="padding: 30px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-0 p-3" placeholder="Keyword" id="search-input">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-primary border-primary text-white" onclick="searchApi();"><i class="fa fa-search p-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Search Form End -->
+
+            {% include "trend/category.html" %}
+        </div>
+        <!-- Sidebar End -->
+    </div>
+</div>
+<!-- Blog End -->
+
+{% endblock  %}
+
+{% block js_area %}
+    <script src="{% static 'trend/js/api.js' %}"></script>
+{% endblock  %}

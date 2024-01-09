@@ -1,0 +1,60 @@
+.navbar-expand-lg {
+    background-color: rgb(55, 96, 209) !important;
+}
+
+.navflexoption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-link{
+    color: white;
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.dropdown-menu {
+    background-color: rgb(82, 156, 241);
+    animation: fadeInDown 0.5s ease-out; /* fadeInDown 애니메이션을 0.5초 동안 적용 */
+}
+
+/* 사용자 정의 fadeInDown 애니메이션 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item {
+    color: rgba(200, 217, 240, 0.815);
+    font-weight: bolder;
+    padding-right: 0; 
+}
+
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    z-index: 99;
+}
+
+.img-zoomin {
+    width: 110px;
+    transition: 0.5s;
+}
+
+.img-zoomin:hover {
+    transform: scale(1.1);
+}

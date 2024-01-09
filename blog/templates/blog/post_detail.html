@@ -1,0 +1,260 @@
+{% extends "common/base.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %} 
+
+{% block head_title %}
+    {{ post.title | truncatewords:7 }}...
+{% endblock  %}
+
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'blog/css/post_detail.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Blog Grid Start -->
+        <div class="col-lg-8 mb-3">
+            {% if user.is_authenticated and user == post.author %}
+                <a class="btn btn-info btn-sm float-end" href="/blog/update_post/{{ post.pk }}/" role="button">
+                    <i class="fas fa-pen"></i>Edit Post
+                </a>
+                <br><br>
+            {% endif %}
+
+            <div class="position-relative">
+                {% if post.head_image %}
+                    <img class="card-img-top" src="{{ post.head_image.url }}" alt="{{ post }}" >
+                {% else %}
+                    <img class="card-img-top" src="https://picsum.photos/seed/{{ post.id }}/400/300" alt="random_image">
+                {% endif %}
+            </div>
+            <div class="bg-secondary mb-3" style="padding: 30px;">
+                <h5 class="text-muted mb-2 float-end">
+                    {% if post.category %}
+                        <span class="badge rounded-pill text-bg-secondary">{{ post.category }}</span>
+                    {% else %}
+                        <span class="badge rounded-pill text-bg-secondary">AI 기타 도구활용</span>
+                    {% endif %}
+                </h5>
+                <h3 class="font-weight-bold mb-3">{{ post.title }}</h3>
+
+                {% if post.created_at != post.updated_at %}
+                    <small class="text-body d-block float-start"><i class="fas fa-calendar-alt me-1"></i> {{ post.updated_at }}</small>
+                {% else %}
+                    <small class="text-body d-block float-start"><i class="fas fa-calendar-alt me-1"></i> {{ post.created_at }}</small>
+                {% endif %}
+
+                <small class="text-body d-block">&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-pencil-square"></i> Posted by {{ post.author }}</small>
+
+                <br>
+                <p>{{ post.get_content_markdown | safe }}</p>
+                <br>
+                <div class="d-flex justify-content-center">
+                    {% if user.is_authenticated %}
+                        {% csrf_token %}
+                        <button type="button" id="like-button" class="btn btn-secondary btn-outline-info btn-lg" onclick="like_process({{ post.pk }});">
+                            &nbsp;추천&nbsp;&nbsp;{{ likes_count }}&nbsp;
+                        </button> 
+                    {% else %}
+                        <button type="button" class="btn btn-secondary btn-outline-info btn-lg" onclick="showAlertModal('로그인 후 추천바랍니다.');">
+                            &nbsp;추천&nbsp;&nbsp;{{ likes_count }}&nbsp;
+                        </button>
+                    {% endif %}
+                </div>
+                <br>
+
+                {% if post.file_upload %}
+                    <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>
+                        첨부파일:
+                        {% with ext_exist_list=ext_list %}
+                            {% if post.get_file_ext in ext_exist_list %}
+                                <i class="bi bi-filetype-{{ post.get_file_ext }}"></i>
+                            {% else %}
+                                <i class="bi bi-file-earmark"></i>
+                            {% endif %}
+                        {% endwith %}
+                        {% comment %} 부스트스랩 아이콘 리스트를 불러온 뒤, 거기 있으면 사용. with를 사용하여 임시 객체 생성 {% endcomment %}
+                        {{ post.get_file_name }}
+                    </a>
+                    <br><br>
+                {% endif %}
+
+                {% if post.tags.exists %} 
+                    <i class="fas fa-tags"></i>
+                    {% for tag in post.tags.all %}
+                        <a href="{{ tag.get_absolute_url }}" class="badge text-bg-light">#{{ tag }}</a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Comment List Start -->
+            <div class="bg-secondary" style="padding: 30px; margin-bottom: 30px;">
+
+                <div class="card my-4">
+                    <h5 class="card-header">Leave a Comment:</h5>
+                    <div class="card-body">
+                        {% if user.is_authenticated %}
+                            <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ comment_form | crispy }}
+                                </div>
+                                <button type="submit" class="btn btn-primary float-end">Submit</button>
+                            </form>
+                        {% else %}
+                            <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
+                        {% endif %}
+                    </div>
+                </div>
+            
+                {% if post.comment_set.exists %}
+                    {% for comment in post.comment_set.iterator %}
+                        <div class="d-flex mb-4" id="comment-{{ comment.pk }}">
+                            <div class="flex-shrink-1">
+                                <img class="rounded-circle me-3" src="http://placehold.it/50x50" alt="" >
+                            </div>
+                            <div class="flex-grow-1 p-1">
+                                {% if user.is_authenticated and comment.author == user %}
+                                    <div class="float-end">
+                                        <!-- Edit Comment Button -->
+                                        <button type="button" 
+                                            id="comment-{{ comment.pk }}-update-modal-btn"
+                                            class="btn btn-sm btn-info" 
+                                            data-bs-toggle="modal" data-bs-target="#editCommentModal-{{ comment.pk }}">
+                                            edit
+                                        </button>
+                                        
+                                        <!-- Delete Comment Button -->
+                                        <button type="button"
+                                            id="comment-{{ comment.pk }}-delete-modal-btn"
+                                            class="btn btn-sm btn-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteCommentModal-{{ comment.pk }}">
+                                            delete
+                                        </button>
+                                    </div>
+            
+                                    <!-- Edit Comment Modal -->
+                                    <div class="modal fade" id="editCommentModal-{{ comment.pk }}" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editCommentModalLabel">Edit Comment</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post" action="/blog/update_comment/{{ comment.pk }}/" enctype="multipart/form-data">
+                                                        {% csrf_token %}
+                                                        {{ edit_comment_form | crispy }} 
+                                                        <button type="submit" class="btn btn-primary">Edit Comment</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <!-- Delete Comment Modal -->
+                                    <div class="modal fade" id="deleteCommentModal-{{ comment.pk }}" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">정말 삭제하시겠습니까?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <del>{{ comment | linebreaks }}</del>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a role="button" class="btn btn-danger" href="/blog/delete_comment/{{ comment.pk }}/">삭제</a>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+            
+                                <h5 class="mt-0">
+                                    {{ comment.author.username }}
+                                    &nbsp;&nbsp;<small class="text-muted">{{ comment.created_at }}</small>
+                                </h5>
+            
+                                <p>{{ comment.content | linebreaks }}</p>
+            
+                                {% if comment.created_at != comment.modified_at %}
+                                    <p class="text-muted float-end"><small>Updated: {{ comment.modified_at }}</small></p>
+                                {% endif %}
+            
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Blog Grid End -->
+
+        <!-- 여백 -->
+        <div class="col-lg-1">
+        </div>
+
+        <!-- Sidebar Start -->
+        <div class="col-lg-3 mt-5 mt-lg-0">
+            {% include "blog/sidebar.html" %}
+        </div>
+        <!-- Sidebar End -->
+    </div>
+</div>
+<!-- Blog End -->
+
+{% endblock  %}
+
+{% block js_area %}
+    <script src="{% static 'blog/js/post.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            {% for comment in post.comment_set.iterator %}
+                $('#editCommentModal-{{ comment.pk }}').on('show.bs.modal', function (event) {
+                    var modal = $(this);
+                    var commentContent = "{{ comment.content|escapejs }}";
+                    modal.find('#id_edit_content').val(commentContent);
+                });
+            {% endfor %}
+            
+            {% if like_yn %}
+                $("#like-button").removeClass().addClass("btn btn-info btn-outline-dark btn-lg");
+            {% endif %}
+        });
+
+        function like_process(pk){
+            $.ajax({
+                type: "POST",
+                url: "/blog/like_post/",  
+                data: {
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                    post_pk: pk
+                },
+                success: function(response) {
+                    if (response.success) {
+                        if (response.liked) {
+                            $("#like-button").removeClass().addClass("btn btn-info btn-outline-dark btn-lg");
+                        }else{
+                            $("#like-button").removeClass().addClass("btn btn-secondary btn-outline-info btn-lg");
+                        }
+                        $("#like-button").html("&nbsp;추천&nbsp;&nbsp;"+response.like_num+"&nbsp;");
+                    } else {
+                        console.log("에러내용:", response.error);
+                        showAlertModal("추천에 실패하였습니다.");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("Ajax Error:", textStatus, errorThrown);
+                    console.log("Server response:", jqXHR.responseText);
+                    showAlertModal("추천 중 에러가 발생하였습니다.");
+                }
+            });
+        }
+    </script>
+{% endblock  %}

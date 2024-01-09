@@ -1,0 +1,71 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+    GEASS-About Me
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'single_pages/css/about_engineer.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+<div class="container-fluid bg-primary bg-opacity-50 p-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h1 class="text-primary fw-semibold">Visit Our Location</h1>
+            <br>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101290.73331377195!2d126.89552701640625!3d37.5000065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca3f16462aff1%3A0xc4c79f9b20cf2718!2z7L2U66as7JWESVTslYTsubTrjbDrr7gg6rCV64Ko7KCQ!5e0!3m2!1sko!2skr!4v1704593762362!5m2!1sko!2skr" 
+                class="border border-3 border-info" width="1170" height="450" style="--bs-border-opacity: .5;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 bg-info bg-opacity-25">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-lg-5">
+            <h1 class="text-primary fw-semibold">AI Software Engineer Geass</h1>
+            <br>
+            <ul class="text-dark fw-semibold fs-4">
+                <li class="mt-4">파이썬 라이브러리 활용</li>
+                <li class="mt-4">Bootstrap을 활용한 웹페이지 구성</li>
+                <li class="mt-4">django를 활용한 웹페이지 구현</li>
+                <li class="mt-4">빅데이터를 이용한 챗봇 구현</li>
+                <li class="mt-4">OCR기술을 활용하여 이미지 딥러닝</li>
+            </ul>
+        </div>
+        <div class="col-lg-4 mt-2">
+            <img class="img-fluid" width="400" src="{% static 'single_pages/images/me.jpg' %}">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 bg-danger bg-opacity-10">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-lg-5">
+            <h1 class="text-primary fw-semibold">AI Design Engineer Brakio</h1>
+            <br>
+            <ul class="text-dark fw-semibold fs-4">
+                <li class="mt-4">디자인 경력을 활용한 웹페이지 구성</li>
+                <li class="mt-4">django를 활용한 웹페이지 구현</li>
+                <li class="mt-4">다양한 자바스크립트 라이브러리 활용</li>
+                <li class="mt-4">빅데이터를 이용한 챗봇 구현</li>
+                <li class="mt-4">OCR기술을 활용하여 이미지 딥러닝</li>
+            </ul>
+        </div>
+        <div class="col-lg-4 mt-2">
+            <img class="img-fluid" width="400" src="{% static 'single_pages/images/brakio.png' %}">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 bg-danger bg-opacity-10">
+</div>
+
+{% endblock  %}
+
+{% block js_area %}
+    <script src="{% static 'single_pages/js/about_engineer.js' %}"></script>
+{% endblock  %}

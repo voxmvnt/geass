@@ -1,0 +1,40 @@
+[
+    {"id": "504ef97b-368e-42de-aaf1-6d4825daa3c4", "title": "개념이해", "children": [
+        {"id": "904224d3-5f4b-49c7-a5ab-ad85e56293b3", "title": "함수", "children": [
+            {"id": "aa1a7077-f54d-43aa-ac30-844b1d0e1e22", "title": "sort 함수", "children": []},
+            {"id": "357d4153-b983-4869-ad8e-aab68b971592", "title": "List Comprehension", "children": []},
+            {"id": "e36850d6-b815-47a5-b873-d475e79dc3b0", "title": "람다 함수", "children": []},
+            {"id": "a9aa614d-518d-4f3a-848f-101cdadf196f", "title": "가변 인자", "children": []}
+        ]},
+        {"id": "8a171fb3-96f3-4aad-9a30-cf02fafe13c1", "title": "모듈", "children": [
+            {"id": "a215d4dc-b141-41e4-8203-3648e22dfc06", "title": "__main__ 처리", "children": []},
+            {"id": "da80d3f0-7926-456a-aaf0-d50d566893f5", "title": "datetime 모듈", "children": [
+                {"id": "e079e5f5-0214-43c7-99eb-4694daad556e", "title": "strftime 포멧", "children": []},
+                {"id": "11342989-298e-4e4e-9fd6-fbee998b97fe", "title": "datetime 타입", "children": []},
+                {"id": "53c88fb2-ba22-48d6-943b-ff43b39a735f", "title": "timestamp 활용", "children": []}
+            ]},
+            {"id": "9f21c150-51ed-44f6-a8b7-f9a10b7f42e6", "title": "numpy 모듈", "children": []}
+        ]}
+    ]},
+    {"id": "2a249993-7edf-435e-8112-66ebdbfc1015", "title": "라이브러리", "children": [
+        {"id": "740f6995-cec4-4cc1-b810-b784ad0685b9", "title": "pandas", "children": [
+            {"id": "4c00c307-d263-4dc2-aaea-1b8aca38a876", "title": "Series", "children": []},
+            {"id": "a6d046da-8191-4fb5-b9bb-8039a166dba8", "title": "DataFrame", "children": [
+                {"id": "e17c6a5c-374f-4426-a775-baf7d4a4bd6c", "title": "데이터 결합", "children": []},
+                {"id": "4db1ca0e-40d6-4f4a-b69c-8b43d4fafe27", "title": "데이터 추가,수정, 삭제", "children": []},
+                {"id": "b83be862-0091-4721-a0ee-020e83533165", "title": "데이터 저장, 불러오기", "children": []}
+            ]},
+            {"id": "0a4038ae-4f20-403f-abbf-e3a40ead741c", "title": "Data 전처리", "children": [
+                {"id": "a8334197-e93d-486e-8943-29d3946cb0e0", "title": "함수 적용", "children": []},
+                {"id": "1c60940b-931b-4838-908f-b0349c398b19", "title": "필터링", "children": []},
+                {"id": "02b77683-5834-4aeb-9dd7-60632ce82bc8", "title": "정규화", "children": []},
+                {"id": "74eeae4d-5443-4d96-88d1-f696b265ab24", "title": "인코딩", "children": []},
+                {"id": "6933e1ec-a43a-462f-9152-e7cc2ae2489d", "title": "날짜 입력", "children": []},
+                {"id": "c832329f-af15-4200-b702-44a795bd6180", "title": "그룹화", "children": []}
+            ]},
+            {"id": "fe4498a1-17e7-4d70-a355-0d46ed186524", "title": "Data 차트", "children": []}
+        ]},
+        {"id": "42de9438-f349-46a6-9ce5-029a4a17469e", "title": "cx_Oracle", "children": []}
+    ]},
+    {"id": "c5246f1c-8461-462e-9e8d-9f84677b0da6", "title": "개발툴", "children": []}
+]

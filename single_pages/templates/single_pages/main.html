@@ -1,0 +1,130 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+    GEASS-HOME
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'single_pages/css/main.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'single_pages/css/owl/owl.carousel.min.css' %}">
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header mb-0">
+    <div class="container pt-5">
+        <div class="row g-5 pt-5">
+            <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">AI GEASS</div>
+                <h1 class="display-4 text-white mb-4 animated slideInRight">Artificial Intelligence</h1>
+                <p class="text-white mb-4 animated slideInRight">
+                    AI 기술은 데이터 분석과 학습을 통해 더 나은 환경을 제공하고, 문제 해결과 의사 결정에서 혁신을 이끌어내는 기술입니다.<br>
+                    GEASS 블로그를 통해 AI에 대한 내용을 학습하고 활용해 보시길 바랍니다.
+                </p>
+                <a href="/about_engineer/" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Read More</a>
+                <button class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight" onclick="scrollToBottom()">Contact Us</button>
+            </div>
+            <div class="col-lg-6 align-self-end text-center text-lg-end">
+                <img class="img-fluid" src="{% static 'single_pages/images/ai_001.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+
+<!-- Cyberpunk Start -->
+<div class="container-fluid mt-0 mb-0 p-0 cyberpunk-gif" style="display:flex; align-items: center;">
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-3">
+                &nbsp;
+            </div>
+            <div class="col-9">
+                <h5 class="display-4 text-light fw-semibold mb-4 animated slideInRight">AI와 함께하는 Cyber 시대...</h5><br><br>
+                <h5 class="display-4 text-light fw-semibold mb-4 animated slideInRight">빠르게 당신을 향해 다가오고 있다.</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cyberpunkero End -->
+
+
+{% if like_posts.exists %}
+    <div class="container-fluid latest-news py-5 bg-primary bg-opacity-25">
+        <div class="container py-5">
+            <h2 class="mb-4 fw-semibold">Posts Suggestion</h2>
+            <div class="latest-news-carousel owl-carousel">
+                {% for p in like_posts %}
+                    <div class="latest-news-item">
+                        <div class="bg-light rounded">
+                            <div class="rounded-top overflow-hidden">
+                                {% if p.head_image %}
+                                    <img src="{{ p.head_image.url }}" class="img-zoomin img-fluid rounded-top w-100" style="height: 220px !important;">
+                                {% else %}
+                                    <img src="https://picsum.photos/seed/{{ p }}/300/300" class="img-zoomin img-fluid rounded-top w-100" style="height: 220px !important;">
+                                {% endif %}
+                            </div>
+                            <div class="d-flex flex-column p-4">
+                                <a href="{{ p.get_absolute_url }}" class="h6">{{ p.title | truncatewords:18 }}</a>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-body d-block"><i class="bi bi-pencil-square"></i> {{ p.author }}</small>
+                                    <small class="text-body d-block">&nbsp;<i class="fas fa-calendar-alt me-1"></i>
+                                        {% if p.created_at != p.updated_at %}
+                                            {{ p.updated_at }}
+                                        {% else %}        
+                                            {{ p.created_at }}
+                                        {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if recent_posts.exists %}
+    <div class="container-fluid latest-news py-5 bg-info bg-opacity-25">
+        <div class="container py-5">
+            <h2 class="mb-4 fw-semibold">Recent posts</h2>
+            <div class="latest-news-carousel owl-carousel">
+                {% for p in recent_posts %}
+                    <div class="latest-news-item">
+                        <div class="bg-light rounded">
+                            <div class="rounded-top overflow-hidden">
+                                {% if p.head_image %}
+                                    <img src="{{ p.head_image.url }}" class="img-zoomin img-fluid rounded-top w-100" style="height: 220px !important;">
+                                {% else %}
+                                    <img src="https://picsum.photos/seed/{{ p }}/300/300" class="img-zoomin img-fluid rounded-top w-100" style="height: 220px !important;">
+                                {% endif %}
+                            </div>
+                            <div class="d-flex flex-column p-4">
+                                <a href="{{ p.get_absolute_url }}" class="h6">{{ p.title | truncatewords:18 }}</a>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-body d-block"><i class="bi bi-pencil-square"></i> {{ p.author }}</small>
+                                    <small class="text-body d-block">&nbsp;<i class="fas fa-calendar-alt me-1"></i>
+                                        {% if p.created_at != p.updated_at %}
+                                            {{ p.updated_at }}
+                                        {% else %}        
+                                            {{ p.created_at }}
+                                        {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock  %}
+
+{% block js_area %}
+    <script src="{% static 'single_pages/js/main.js' %}"></script>
+    <script src="{% static 'single_pages/js/owl.carousel.min.js' %}"></script> 
+{% endblock  %}

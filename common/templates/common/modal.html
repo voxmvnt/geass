@@ -1,0 +1,58 @@
+<!-- alert modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">알림창</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="alertDynamicContent">
+        <!-- Content will be dynamically inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- confirm modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">확인창</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="confirmDynamicContent">
+        <!-- Content will be dynamically inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="confirmButton" class="btn btn-primary" onclick="">예</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- logout modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">확인창</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="text-primary" id="logoutIdLabel"></label>님 정말 로그아웃 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="/accounts/logout/">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">예</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
+      </div>
+    </div>
+  </div>
+</div>

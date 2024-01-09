@@ -1,0 +1,50 @@
+/*** Feature ***/
+.feature-item::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, .1);
+    clip-path: polygon(66% 0, 100% 0, 100% 100%, 33% 100%);
+}
+
+.feature-item .border {
+    position: relative;
+    border-color: rgba(255, 255, 255, .2) !important;
+    z-index: 1;
+}
+
+.custom-bold-text {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+
+/*** Newsletter ***/
+.newsletter {
+    background-size: cover;
+}
+
+@media (min-width: 992px) {
+    .newsletter .container {
+        max-width: 100% !important;
+    }
+
+    .newsletter .newsletter-text  {
+        padding-right: calc(((100% - 960px) / 2) + .75rem);
+    }
+}
+
+@media (min-width: 1200px) {
+    .newsletter .newsletter-text  {
+        padding-right: calc(((100% - 1140px) / 2) + .75rem);
+    }
+}
+
+@media (min-width: 1400px) {
+    .newsletter .newsletter-text  {
+        padding-right: calc(((100% - 1320px) / 2) + .75rem);
+    }
+}

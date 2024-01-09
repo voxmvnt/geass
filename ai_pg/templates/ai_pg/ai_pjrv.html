@@ -1,0 +1,66 @@
+<!-- Sharing learning data -->
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'ai_pg/css/ai_pjrv.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+<div class="container-fluid pt-5 bg-primary hero-header mb-0">
+    <div class="container pt-5">
+        <div class="row g-5 py-5">
+            <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">AI Use cases</div>
+                <h1 class="display-4 text-white mb-4 animated slideInRight">AI project reivew</h1>
+                <p class="text-white mb-4 animated slideInRight">
+                    당신의 프로젝트를 여러사람과 공유하고 의견을 나누세요.<br>
+                </p>
+            </div>
+            <div class="col-lg-6 align-self-end text-center text-lg-end">
+                <img class="img-fluid" src="{% static 'ai_pg/images/12.gif' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <div class="row">
+        {% for kaggle in kaggle_info %}
+            <div class="col-md-3 mb-3">
+                <div class="position-relative">
+                    <div class="image-container">
+                        <img class="img-fluid w-100" src="{{ kaggle.thumbnail_url }}" alt="">
+                    </div>
+                </div>
+                <div class="bg-secondary mb-3" style="padding: 30px;">
+                    <h6 class="font-weight-bold mb-3">{{ kaggle.title | truncatewords:18 }}</h6>
+                    <p class="text-muted mt-2"><i class="fas fa-calendar-alt me-1"></i>{{ kaggle.show_date }}</p>
+                    <span class="badge rounded-pill text-dark text-bg-info opacity-50 float-end">
+                        &nbsp;추천&nbsp;{{ kaggle.vote_count }}&nbsp;
+                    </span>
+                    {% if kaggle.url %}
+                        <a class="border-bottom border-primary text-uppercase text-decoration-none" href="{{ kaggle.url }}" target="_blank">
+                    {% else %}
+                        <a class="border-bottom border-primary text-uppercase text-decoration-none">
+                    {% endif %}
+                        Read More <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Blog End -->
+
+
+
+{% endblock  %}
+
+{% block js_area %}
+
+{% endblock  %}
+    

@@ -1,0 +1,63 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% block head_title %}
+    CHAT-List
+{% endblock  %}
+{% block css_area %}
+    <link rel="stylesheet" href="{% static 'trend/css/api_detail.css' %}" media="screen">    
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Blog Grid Start -->
+        <div class="col-lg-8">
+            <div class="position-relative">
+                <img class="card-img-top" src="{% static random_img %}" alt="random_image">
+            </div>
+            <div class="bg-secondary mb-3" style="padding: 30px;">
+                <h2 class="font-weight-bold mb-3">{{ title }}</h2>
+                <h5 class="text-muted mb-2">
+                    {{ date }}
+                    <span class="badge rounded-pill text-bg-secondary">
+                        <a href="{{ link }}" target="_blank">기사링크</a>
+                    </span>
+                </h5>
+                {{ story | safe }}
+                {% comment %} html 태그를 그대로 적용. safe 사용 {% endcomment %}
+            </div>
+        </div>
+        <!-- Blog Grid End -->
+
+        <div class="col-lg-1">
+        </div>
+
+        <!-- Sidebar Start -->
+        <div class="col-lg-3 mt-5 mt-lg-0">
+            <!-- Search Form Start -->
+            <div class="mb-5">
+                <div class="bg-secondary" style="padding: 30px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-0 p-3" placeholder="Keyword" id="search-input">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-primary border-primary text-white" onclick="searchApi();"><i class="fa fa-search p-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Search Form End -->
+
+            {% include "trend/category.html" %}
+        </div>
+        <!-- Sidebar End -->
+    </div>
+</div>
+<!-- Blog End -->
+
+{% endblock  %}
+
+{% block js_area %}
+    <script src="{% static 'trend/js/api.js' %}"></script>
+{% endblock  %}

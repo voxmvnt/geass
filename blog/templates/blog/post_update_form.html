@@ -1,0 +1,68 @@
+{% extends "common/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %} 
+{% block head_title %}
+    Post 수정
+{% endblock  %}
+{% block css_area %}
+    {% comment %} <link rel="stylesheet" href="{% static 'blog/css/post_list.css' %}" media="screen">   {% endcomment %}
+{% endblock  %}
+
+{% block main_area %}
+
+<!-- Blog Start -->
+<div class="container py-5">
+    <h1>Edit Post</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data"> {% csrf_token %} 
+        {{ form | crispy }}
+        <div id="div_id_tags_str">
+            <label for="id_tags_str">Tags:</label>
+            <input type="text" name="tags_str" id="id_tags_str" class="textinput textInput form-control" value="{{ tags_str_default }}">
+        </div>
+        <br>
+        <button type="button" class="btn btn-danger float-end" onclick="delete_post({{ post.pk }});">Delete</button> 
+        <button type="submit" class="btn btn-primary float-end mx-2">Submit</button>
+    </form>
+    {{ form.media }}
+    <br><br>
+</div>
+<!-- Blog End -->
+
+{% endblock  %}
+
+{% block js_area %}
+<script>
+    function delete_post(pk){
+        showConfirmModal("정말 게시물을 삭제 하시겠습니까?", "delete_process", pk);
+    }
+
+    function delete_process(pk){
+        if(pk != "__NoProcess__"){
+            $.ajax({
+                type: "POST",
+                url: "/blog/delete_post/",  
+                data: {
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                    // Add any additional data you want to send for deletion
+                    post_pk: pk
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Redirect to the blog page after successful deletion
+                        window.location.href = "/blog/";
+                    } else {
+                        console.log("에러내용:", response.error);
+                        showAlertModal("삭제에 실패하였습니다.");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("Ajax Error:", textStatus, errorThrown);
+                    console.log("Server response:", jqXHR.responseText);
+                    showAlertModal("삭제 중 에러가 발생하였습니다.");
+                }
+            });
+        }
+    }
+</script>
+{% endblock  %}
