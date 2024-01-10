@@ -67,7 +67,7 @@
                                 {% endif %}
 
                                 <h5 class="font-weight-bold mb-3">
-                                    {{ p.title }}
+                                    {{ p.title | truncatewords:5 }}
                                 </h5>
 
                                 {% if p.created_at != p.updated_at %}
@@ -78,7 +78,7 @@
                                 <small class="text-body d-block">&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-pencil-square"></i> Posted by {{ p.author }}</small>
                                 <br>
 
-                                <p>{{ p.content | truncatewords:18 }}</p>
+                                <p>{{ p.content | truncatewords:15 }}</p>
 
                                 {% if p.tags.exists %} 
                                     <i class="fas fa-tags"></i>

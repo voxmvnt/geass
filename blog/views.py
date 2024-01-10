@@ -118,6 +118,7 @@ def tag_page(request, slug):
             "categories": Category.objects.all(),
             "all_post_count": Post.objects.count(),
             "no_category_post_count": Post.objects.filter(category=None).count(),
+            'search_info': f'태그 검색결과: {tag} ({post_list.count()})',
         },
     )
 

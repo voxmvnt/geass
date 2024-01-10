@@ -52,20 +52,20 @@ def ai_pjrv(request):
     soup = BeautifulSoup(kaggle_soup, 'html.parser')
 
     for kaggle_item in soup.find_all('div', class_=['sc-ggTfmB', 'sc-dfzfrJ', 'gtcKUi', 'jkIfEH']):
-        check1 = kaggle_item.select_one('a img.sc-dEdLBz.ifTiKn')
+        check1 = kaggle_item.select_one('a img.sc-jnyqrv.jyThNi')
         thumbnail_url = check1['src'] if check1 and 'src' in check1.attrs else ''
         thumbnail_url = set_alternative_image(thumbnail_url)
 
-        check2 = kaggle_item.select_one('.sc-irTswW.sc-hZVKbW.fqRuxo.fNPrBr')
+        check2 = kaggle_item.select_one('.sc-irTswW.sc-gtoQIa')
         title = check2.get_text(strip=True) if check2 else ''
 
-        check3 = kaggle_item.select_one('.sc-fGFwAa.sc-bPoMgM.hYoiAj.LJedl')
+        check3 = kaggle_item.select_one('.sc-fGFwAa.sc-bPoMgM')
         vote_count = check3.get_text(strip=True) if check3 else ''
 
-        check4 = kaggle_item.select_one('span.sc-fmSAUk.lhSCbV span')
+        check4 = kaggle_item.select_one('span.sc-fmSAUk.sc-ysCxF span')
         show_date = check4['title'][:16] if check4 else ''
 
-        check5 = kaggle_item.select_one('a.sc-kKQBHJ.fDJrck')
+        check5 = kaggle_item.select_one('a.sc-kMDPuR.enKBuM')
         url_short = check5['href'] if check5 and 'href' in check5.attrs else ''
         url = "https://www.kaggle.com" + url_short
 
