@@ -1,4 +1,4 @@
-![프로젝트 소개](https://github.com/voxmvnt/django_project/intro.jpg)
+![프로젝트 소개](https://github.com/voxmvnt/django_project/blob/main/intro.jpg)
 
 ## 👨‍🏫 프로젝트 소개
 - AI 블로그를 통해 인공지능 관련 정보, 프로그램 소개, 파이썬 학습
