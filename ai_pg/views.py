@@ -78,7 +78,7 @@ def ai_pjrv(request):
 # 노션 API를 통해 페이지의 내용을 가져오는 함수
 def get_notion_page_content(access_id):
     url = f'https://api.notion.com/v1/blocks/{access_id}/children'
-    notion_token = 'secret_5GOiKCVt6kcK5U00K8NVXecECbPErMsm7ildsMSQRiz' 
+    notion_token = 'notion 페이지에서 발급' 
     headers = {
         'Authorization': f'Bearer {notion_token}',
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ def get_notion_page_content(access_id):
     return processed_data
 
 def get_workspace_data(page_id):
-    notion_token = 'secret_5GOiKCVt6kcK5U00K8NVXecECbPErMsm7ildsMSQRiz'
+    notion_token = 'notion 페이지에서 발급'
     url = f'https://api.notion.com/v1/blocks/{page_id}/children'
 
     headers = {

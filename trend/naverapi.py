@@ -18,8 +18,8 @@ def get_thumbnail(url):
         return None
 
 def get_news_data(category):
-    client_id = "3G4KCuMKuOl3PUjDuP8i"  # api Client ID
-    client_secret = "zGyTrIEtyo"  # api Client Secret
+    client_id = "naver Developer에서 발급"  # api Client ID
+    client_secret = "naver Developer에서 발급"  # api Client Secret
     search_word = category  # 검색어
     encode_type = 'json'  # 출력 방식 json 또는 xml
     sort = 'sim'  # 결과값의 정렬기준 시간순 date, 관련도 순 sim
